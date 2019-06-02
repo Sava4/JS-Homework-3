@@ -22,13 +22,12 @@ const prOpValid = (op) => {
 }
 
 const retryPrompt = (num1, num2) => {
-    number1 = promptNumber(num1);
-    number2 = promptNumber(num2);
-
-    while (!isValidNum(num1) && !isValidNum(num2)) {
-        number1 = promptNumber(num1);
-        number2 = promptNumber(num2);
-    }
+    do {
+        num1 = promptNumber(num1);
+        num2 = promptNumber(num2);
+        number1 = num1;
+        number2 = num2;
+    } while (!(isValidNum(number1) && isValidNum(number2)));
 }
 
 const validateAll = (num1, num2, op) => {
@@ -37,26 +36,26 @@ const validateAll = (num1, num2, op) => {
 }
 
 const doCalc = (num1, num2, op) => {
-    validateAll(num1, num2, op);
-    num1 = Number(number1);
-    num2 = Number(number2);
-    op = operation;
+    num1 = Number(num1);
+    num2 = Number(num2);
     switch (op) {
         case '+':
-            console.log((num1 + num2));
+            return(num1 + num2);
             break;
         case '-':
-            console.log((num1 - num2));
+            return(num1 - num2);
             break;
         case '*':
-            console.log((num1 * num2));
+            return(num1 * num2);
             break;
         case '/':
-                console.log((num1 / num2));
-                break;
+            return(num1 / num2);
+            break;
         default:
                 console.log('oops');
         }
     }
 
-doCalc(number1, number2, operation);
+validateAll(number1, number2, operation);
+
+console.log(doCalc (number1, number2, operation));
